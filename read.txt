@@ -1,0 +1,16 @@
+git说明文档
+
+mkdir learngit
+cd learngit
+git init
+git add VQA.docx
+git commit -m "wrote a vqa file"
+git remote add origin https://github.com/wodejing/papers
+git push -u origin master
+
+git remote rm origin
+git remote add origin https://github.com/wodejing/niuke_code
+git pull origin master
+
+可以通过如下命令进行代码合并【注：pull=fetch+merge]
+git pull --rebase origin master

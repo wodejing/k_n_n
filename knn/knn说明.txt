@@ -1,0 +1,30 @@
+数据集：
+originSample: 源文件
+processedSample_includeNotSpecial：存放预处理后的文件文本（去掉停留词，一行一个单词）
+processedSampleOnlySpecial_2：存放去除在全部文档中出现次数不大于4的单词文本
+docVector/IDFPerWord：存放所有单词的IDF值
+docVector/wordTFIDF：存放所有10份交叉验证的训练集和测试集的TF*IDF值
+docVector/PValue：存放传统文本分类k取值为4,5,6,7,8,9的P值（传统文本分类）
+docVector/KNNClassifyResult：存放传统文本分类的结果，最后一行是十次的平均值（传统文本分类）
+docVector/middle：存放根据10份训练集TF*IDF的类中心向量（改进文本分类）
+docVector/deleteBound：存放去除边界的训练样本（改进文本分类）
+docVector/optiBound：存放对样本优化处理后的训练样本，即采用k-means方法对每个类别中的样本进行聚类处理后的结果（改进文本分类）
+docVector/PValue1_k：存放选取不同k值的P值（改进文本分类）
+docVector/PValue1_Gim：存放选取不同组相似度差值的P值（改进文本分类）
+docVector/KNNGimClassifyResult：存放改进算法的结果值，最后一行是十次的平均值（改进文本分类）
+
+
+My_specialWords: 对文档进行预处理，去掉停留词等等，并将处理后的结果存在processedSampleOnlySpecial_2目录中
+My_IDF: 对预处理后的文本计算所有单词的IDF值并存在docVector/IDFPerWord中
+My_TFMultiIDF：将数据集分成十分，七份进行训练，三份进行测试。进行十次迭代，得到十份测试集合相应的10份训练集。并将数据保存在docVector/wordTFIDF中
+My_Knn：knn传统分类算法，先运行find_k() 找到合适的K值，得到k值后运行程序得到10次不同训练集和测试集的分类结果与其平均值，保存在docVector/KNNClassifyResult中
+
+My_Dis：计算欧式距离和余弦距离
+My_Middle：得到每个类的类中心向量，并保存在docVector/middle中
+My_deleteBound：去除边界样本后，并将去除后的结果保存在docVector/deleteBound
+My_OptimizedData：对去除边界后的样本的每个类进行聚类。并将聚类后的结果保存在docVector/optiBound
+My_Gim：先运行find_k()找到合适的k值，再运行find_gim()得到合适的组相似度差值，再运行find_m()得到合适的聚类簇数，最后通过得到的k值和组相似度差值以及簇数得到分类结果，并将分类结果保存在docVector/KNNGimClassifyResult中
+
+My_Graph_k：对于不同的k值传统文本分类与改进文本分类算法的结果图
+My_Graph_gsim：对于不同的组相似度差值改进knn文本分类算法结果图
+My_Graph_m：对于不同的聚类簇数改进knn文本分类结果图
